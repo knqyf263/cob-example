@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  bench:
+    docker:
+      - image: circleci/golang:1.13
+    steps:
+      - checkout
+      - run:
+          name: Install cob
+          command: curl -sfL https://raw.githubusercontent.com/knqyf263/cob/master/install.sh | sudo sh -s -- -b /usr/local/bin
+      - run:
+          name: Run cob
+          command: cob -benchmem ./...
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - bench
