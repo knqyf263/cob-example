@@ -6,10 +6,10 @@ import (
 )
 
 func BenchmarkAppend_Allocate(b *testing.B) {
-    base := make([]string, b.N)
+    base := []string{}
     b.ResetTimer()
     for i := 0; i < b.N; i++ {
-        base[i] = fmt.Sprintf("no%d", i)
+        base = append(base, fmt.Sprintf("no%d", i))
     }
 }
 
